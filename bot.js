@@ -16,4 +16,43 @@ client.on("message", message => {
 };     
 });
 
+const developers = ['536009907120504847','505423733230534656'];
+ 
+client.on('message', message => {
+    var argresult = message.content.split(` `).slice(1).join(' ');
+      if (!developers.includes(message.author.id)) return;
+     
+  if (message.content.startsWith(prefix + 'setgame')) {
+    client.user.setGame(argresult);
+      message.channel.send(`**→ | Changed the Bot PLAYING to » __${argresult}__**.`)
+  } else
+     if (message.content === (prefix + "leave")) {
+    message.guild.leave();  
+  } else  
+  if (message.content.startsWith(prefix + 'setwatch')) {
+  client.user.setActivity(argresult, {type:'WATCHING'});
+      message.channel.send(`**→ | Changed the Bot WATCHING to » __${argresult}__**.`)
+  } else
+  if (message.content.startsWith(prefix + 'setlisten')) {
+  client.user.setActivity(argresult , {type:'LISTENING'});
+      message.channel.send(`**→ | Changed the Bot LISTENING to » __${argresult}__**.`)
+  } else
+  if (message.content.startsWith(prefix + 'setstream')) {
+    client.user.setGame(argresult, "https://www.twitch.tv/2oLF");
+      message.channel.send(`**→ | Changed the Bot STREAMING to » __${argresult}__**.`)
+  }
+  if (message.content.startsWith(prefix + 'setname')) {
+  client.user.setUsername(argresult).then
+      message.channel.send(`**→ | Changed the Bot NAME to » __${argresult}__**.`)
+} else
+  if (message.content.startsWith(prefix + 'setprefix1')) {
+  client.user.setPrefix(argresult).then
+      message.channel.send(`**→ | Changed the Bot PREFIX to » __${argresult}__**.`)
+} else
+if (message.content.startsWith(prefix + 'setavatar')) {
+  client.user.setAvatar(argresult);
+    message.channel.send(`**→ | Changed the Bot AVATAR to » __${argresult}__**.`);
+}
+});
+
 client.login(process.env.BOT_TOKEN);
