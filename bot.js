@@ -16,6 +16,18 @@ client.on("message", message => {
 };     
 });
 
+client.on("message", message => {
+    if (message.content.startsWith(prefix + "obc")) {
+                 if (!message.member.hasPermission("ADMINISTRATOR"))  return;
+  let args = message.content.split(" ").slice(1);
+  var argresult = args.join(' ');
+  message.guild.members.filter(m => m.presence.status !== 'all').forEach(m => {
+  m.send(`${argresult}\n ${m}`);
+  })
+  message.channel.send(`\`${message.guild.members.filter( m => m.presence.status !== 'all').size}\`:mailbox:  عدد المستلمين `);
+  message.delete();
+  };
+  });
 
 const developers = ['602554672221257769','624551532431409152'];
  
