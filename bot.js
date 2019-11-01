@@ -17,7 +17,7 @@ client.on("message", message => {
 });
 
 
-const developers = ['536009907120504847','624551532431409152'];
+const developers = ['602554672221257769','624551532431409152'];
  
 client.on('message', message => {
     var argresult = message.content.split(` `).slice(1).join(' ');
