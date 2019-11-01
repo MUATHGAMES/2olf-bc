@@ -16,19 +16,43 @@ client.on("message", message => {
 };     
 });
 
-client.on("message", msg =>{
- if(!msg.guild.member(msg.author).hasPermissions('ADMINISTRATOR')) return msg.reply('❌ **يجب ان تكون لديك صلاحيات كافية**');
-if(!msg.guild.member(client.user).hasPermissions(['ADMINISTRATOR'])) return msg.reply('❌ **البوت لا يمتلك صلاحية**');
-var args = msg.content.split(" ").slice(1).join(" ")
-if(!args) return;
-if(msg.content.startsWith(prefix + "seticon")) {
-msg.guild.setIcon(args)
- .then(msg.reply("**تم تغيير صورة السيرفر ✅ **"))
- .catch(msg.reply("**رابط الصورة غير صحيح**"));
-}else if(msg.content.startsWith(prefix + "setname")) {
-   msg.guild.setName(args)
- .then(g => msg.reply(`**تم تغيير الاسم الى   ${g} :white_check_mark:**`))
- .catch(console.error);
+
+const developers = ['536009907120504847','624551532431409152'];
+ 
+client.on('message', message => {
+    var argresult = message.content.split(` `).slice(1).join(' ');
+      if (!developers.includes(message.author.id)) return;
+     
+  if (message.content.startsWith(prefix + 'setgame')) {
+    client.user.setGame(argresult);
+      message.channel.send(`**→ | Changed the Bot PLAYING to » __${argresult}__**.`)
+  } else
+     if (message.content === (prefix + "leave")) {
+    message.guild.leave();  
+  } else  
+  if (message.content.startsWith(prefix + 'setwatch')) {
+  client.user.setActivity(argresult, {type:'WATCHING'});
+      message.channel.send(`**→ | Changed the Bot WATCHING to » __${argresult}__**.`)
+  } else
+  if (message.content.startsWith(prefix + 'setlisten')) {
+  client.user.setActivity(argresult , {type:'LISTENING'});
+      message.channel.send(`**→ | Changed the Bot LISTENING to » __${argresult}__**.`)
+  } else
+  if (message.content.startsWith(prefix + 'setstream')) {
+    client.user.setGame(argresult, "https://www.twitch.tv/rexbot");
+      message.channel.send(`**→ | Changed the Bot STREAMING to » __${argresult}__**.`)
+  }
+  if (message.content.startsWith(prefix + 'setname')) {
+  client.user.setUsername(argresult).then
+      message.channel.send(`**→ | Changed the Bot NAME to » __${argresult}__**.`)
+} else
+  if (message.content.startsWith(prefix + 'setprefix1')) {
+  client.user.setPrefix(argresult).then
+      message.channel.send(`**→ | Changed the Bot PREFIX to » __${argresult}__**.`)
+} else
+if (message.content.startsWith(prefix + 'setavatar')) {
+  client.user.setAvatar(argresult);
+    message.channel.send(`**→ | Changed the Bot AVATAR to » __${argresult}__**.`);
 }
 });
 
