@@ -27,9 +27,6 @@ client.on('message', message => {
     client.user.setGame(argresult);
       message.channel.send(`**→ | Changed the Bot PLAYING to » __${argresult}__**.`)
   } else
-     if (message.content === (prefix + "leave")) {
-    message.guild.leave();  
-  } else  
   if (message.content.startsWith(prefix + 'setwatch')) {
   client.user.setActivity(argresult, {type:'WATCHING'});
       message.channel.send(`**→ | Changed the Bot WATCHING to » __${argresult}__**.`)
@@ -39,16 +36,12 @@ client.on('message', message => {
       message.channel.send(`**→ | Changed the Bot LISTENING to » __${argresult}__**.`)
   } else
   if (message.content.startsWith(prefix + 'setstream')) {
-    client.user.setGame(argresult, "https://www.twitch.tv/rexbot");
+    client.user.setGame(argresult, "https://www.twitch.tv/2olf");
       message.channel.send(`**→ | Changed the Bot STREAMING to » __${argresult}__**.`)
   }
   if (message.content.startsWith(prefix + 'setname')) {
   client.user.setUsername(argresult).then
       message.channel.send(`**→ | Changed the Bot NAME to » __${argresult}__**.`)
-} else
-  if (message.content.startsWith(prefix + 'setprefix1')) {
-  client.user.setPrefix(argresult).then
-      message.channel.send(`**→ | Changed the Bot PREFIX to » __${argresult}__**.`)
 } else
 if (message.content.startsWith(prefix + 'setavatar')) {
   client.user.setAvatar(argresult);
